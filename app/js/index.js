@@ -1,3 +1,4 @@
+require('es5-shim-sham'); // polyfills
 var React = require('react');
 var Page  = require('../jsx/page.jsx');
 
