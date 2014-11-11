@@ -1,8 +1,4 @@
-/**
- * @jsx React.DOM
- */
-
- "use strict";
+"use strict";
 
 var React    = require('react');
 
@@ -33,7 +29,7 @@ var PartGraph = React.createClass({
     {
       type:    'unkown',
       name:    'Fill in',
-      ammount:  100
+      ammount:  1000
     }];
 
     var dotList = [];

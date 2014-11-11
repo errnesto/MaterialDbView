@@ -1,8 +1,4 @@
-/**
- * @jsx React.DOM
- */
-
- "use strict";
+"use strict";
 
 var React   = require('react');
 
@@ -12,10 +8,9 @@ var ComponentGraph = React.createClass({
 
   render: function() {  
     return (
-      <PartGraph
-        partName    = "partName"
-        selectedDot = {this.props.selectedDot}
-        selectDot   = {this.props.selectDot} />
+      <PartGraph 
+        {...this.props} 
+        partName = "partName" />
     );
   }
 });
