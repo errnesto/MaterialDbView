@@ -33,7 +33,8 @@ gulp.task('stylus', function () {
     	.pipe(plumber())
         .pipe(stylus({
             use: autoprefixer({browsers: ['Firefox > 5%', 'Explorer 9', 'Chrome > 5%', 'Safari > 5%']}), 
-            compress: false
+            compress: false,
+            'include css': true
         }))
         .pipe(gulp.dest('./assets/css/'))
         .pipe(livereload());
