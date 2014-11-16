@@ -45,6 +45,11 @@ var PartGraph = React.createClass({
     return materialList;
   },
 
+  handleClick: function (dotKey, e) {
+    e.stopPropagation();
+    this.props.selectDot(dotKey)
+  },
+
   render: function() {
     var materialList = this.buildMatrialRepresentation();
 
@@ -58,7 +63,7 @@ var PartGraph = React.createClass({
           <li 
             className = {'dot ' + material.type}
             key       = {dotKey}
-            onClick   = {this.props.selectDot.bind(null, dotKey)} >
+            onClick   = {this.handleClick.bind(null, dotKey)} >
 
             {isSelected ? <Tooltip 
                             data          = {material}

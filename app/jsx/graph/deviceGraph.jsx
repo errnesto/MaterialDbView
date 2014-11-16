@@ -11,6 +11,14 @@ var DeviceGraph = React.createClass({
     }
   },
 
+  componentDidMount: function () {
+    window.addEventListener('click', this.handleClick);
+  },
+
+  handleClick: function (e) {
+    this.selectDot('');
+  },
+
   selectDot: function (group) {
     this.setState({
       selectedDot: group

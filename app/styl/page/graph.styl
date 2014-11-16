@@ -13,39 +13,53 @@
       background-color white
       border-radius    10px
       cursor           pointer
+      border-color     red
       &.document
-        background-color #666
         border-radius    0
+        materialColor(#666)
       &.unkown
         color            white
-        background-color black
         border-radius    0
+        materialColor(#222)
       &.gold
-        background-color #F5A623
+        materialColor(#F5A623)
       &.tin
-        background-color #50E3C2
+        materialColor(#50E3C2)
       &.silver
-        background-color #B9D5CB
+        materialColor(#B9D5CB)
       &.glass
-        background-color #00C9FF
+        materialColor(#00C9FF)
       &.lithium
-        background-color #EDF414
+        materialColor(#EDF414)
       &.acid
-        background-color #F70699
+        materialColor(#F70699)
       &.plastic
-        background-color #029E00
+        materialColor(#029E00)
         
     .tooltip
       position         absolute
       bottom           15px
-      left             0
+      left             4px
       width            200px
       height           70px
       background-color inherit
       padding          10px
       z-index          10
-      font-family sans-serif
-      font-size   12px
+      font-family      sans-serif
+      font-size        12px
+      box-shadow       -2px 6px 24px 0 #000
+      &:before
+        content            ''
+        position           absolute
+        bottom             -10px
+        left               -2px
+        width              0 
+        height             0
+        border-top         10px solid transparent
+        border-bottom      10px solid transparent 
+        border-right       10px solid
+        border-right-color inherit
+        transform          rotate(45deg)
       
       .dot-name
         font-size  14px
