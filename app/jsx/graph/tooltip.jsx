@@ -11,6 +11,14 @@ var Tooltip = React.createClass({
           className = "dot-name">
           {this.props.data.name}
         </h2>
+        <p
+          className = "component">
+          {this.props.componentName}
+        </p>
+        <p
+          className = "part">
+          {this.props.partName}
+        </p>
       </div>
     );
   }

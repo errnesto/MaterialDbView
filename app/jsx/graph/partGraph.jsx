@@ -4,38 +4,54 @@ var React    = require('react');
 
 var Tooltip = require('./tooltip.jsx');
 
+
 var PartGraph = React.createClass({
-  render: function() {
-    var materialList = [{
-      type:    'gold',
-      name:    'Gold',
-      ammount:  5,
-    },
-    {
-      type:    'tin',
-      name:    'Tin',
-      ammount:  3
-    },
-    {
-      type:    'document',
-      name:    'Document 1',
-      ammount:  1,
-    },
-    {
-      type:    'document',
-      name:    'Document 2',
-      ammount:  1,
-    },
-    {
+  makeCssString: function (string) {
+    var escaped = string.replace(/\W/g,'-');   
+    return escaped.toLowerCase();
+  },
+
+  buildMatrialRepresentation: function () {
+    var materialList = [];
+
+    var numberOfDots = this.props.numberOfDots;
+    var partWeight   = this.props.part.mg;
+    var materials    = this.props.part.materials;
+    var dotsUsed     = 0;
+
+    if (materials) {
+      materials.forEach(function (material) {
+        var type  = this.makeCssString(material.name);
+        var dots  = Math.ceil(numberOfDots * material.mg / partWeight);
+        dotsUsed += dots;
+
+        var graphRepresentation = {
+          type:    type,
+          name:    material.name,
+          ammount: dots
+        };
+
+        materialList.push(graphRepresentation);
+      }.bind(this));
+    }
+
+    // add unkown materials
+    materialList.push({
       type:    'unkown',
-      name:    'Fill in',
-      ammount:  1000
-    }];
+      name:    'Fill In',
+      ammount: numberOfDots - dotsUsed
+    });
+
+    return materialList;
+  },
+
+  render: function() {
+    var materialList = this.buildMatrialRepresentation();
 
     var dotList = [];
     materialList.forEach(function (material, index) {
       for (var i = 0; i < material.ammount; i++) {
-        var dotKey = this.props.componentName + this.props.partName + material.type + index + i;
+        var dotKey = this.props.component.name + this.props.part.name + material.type + index + i;
         var isSelected = (this.props.selectedDot == dotKey);
 
         dotList.push(
@@ -44,7 +60,10 @@ var PartGraph = React.createClass({
             key       = {dotKey}
             onClick   = {this.props.selectDot.bind(null, dotKey)} >
 
-            {isSelected ? <Tooltip data = {material}/> : ''}
+            {isSelected ? <Tooltip 
+                            data          = {material}
+                            componentName = {this.props.component.name}
+                            partName      = {this.props.part.name}/> : ''}
           </li>
         );
       }

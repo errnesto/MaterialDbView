@@ -1,0 +1,68 @@
+{
+	"device_name": "computer",
+  "mg":          "10000",
+  "components":  [{
+    "name":  "Hard Disk",
+    "mg":    "2000",
+    "parts": [{
+      "name":      "chip",
+      "mg":        "400",
+      "materials": [{
+        "name":        "Gold",
+        "mg":          "5",
+        "description": "Beschreibung von Gold"
+      },
+      {
+        "name":        "Tin",
+        "mg":          "50",
+        "description": "Beschreibung von Zinn"
+      },
+      {
+        "name":        "Silver",
+        "mg":          "100",
+        "description": "Beschreibung von Silber"
+      }]
+    },
+    {
+      "name":      "disk",
+      "mg":        "1000",
+      "materials": [{
+        "name":        "Glass",
+        "mg":          "800",
+        "description": "Beschreibung von Glas"
+      },
+      {
+        "name":        "Tin",
+        "mg":          "5",
+        "description": "Beschreibung von Zinn"
+      }]
+    }]
+  },
+  {
+    "name":  "Battery",
+    "mg":    "1000",
+    "parts": [{
+      "name":      "akku",
+      "mg":        "800",
+      "materials": [{
+        "name":        "Lithium",
+        "mg":          "600",
+        "description": "Beschreibung von Lithium"
+      },
+      {
+        "name":        "Acid",
+        "mg":          "100",
+        "description": "Beschreibung von Acid"
+      }]
+    },
+    {
+      "name":      "case",
+      "mg":        "20",
+      "materials": [{
+        "name":        "Plastic",
+        "mg":          "20",
+        "description": "Beschreibung von Glas"
+      }]
+    }]
+  }]
+}
