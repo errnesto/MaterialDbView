@@ -8,26 +8,26 @@ var ApiStore = Reflux.createStore({
 			loading: false,
 			error: null
 		};
-		this.listenTo(apiActions.load, this.onLoadPreviews);
-		this.listenTo(apiActions.success, this.onLoadPreviewsSuccess);
-		this.listenTo(apiActions.error, this.onLoadPreviewsError);
-		this.listenTo(apiActions.loadById, this.onLoadPreviewById);
-		this.listenTo(apiActions.successLoadById, this.onLoadPreviewByIdSuccess);
+		this.listenTo(apiActions.load, this.onLoadEntries);
+		this.listenTo(apiActions.success, this.onLoadEntriesSuccess);
+		this.listenTo(apiActions.error, this.onLoadEntriesError);
+		this.listenTo(apiActions.loadById, this.onLoadEntry);
+		this.listenTo(apiActions.successLoadById, this.onLoadEntrySuccess);
 	},
 	/*******************
 	preview list
 	********************/
-	onLoadPreviews: function() {
+	onLoadEntries: function() {
 		this.state.loading = true;
 		this.trigger(this.state);
 	},
-	onLoadPreviewsSuccess: function(data) {
+	onLoadEntriesSuccess: function(data) {
 		this.state.loading = false;
 		this.state.error = null;
 		this.state.previews = data;
 		this.trigger(this.state);
 	},
-	onLoadPreviewsError: function(data) {
+	onLoadEntriesError: function(data) {
 		this.state.loading = false;
 		this.state.error = data.error;
 		this.trigger(this.state);
@@ -35,11 +35,11 @@ var ApiStore = Reflux.createStore({
 	/*******************
 	preview detail
 	********************/
-	onLoadPreviewById: function() {
+	onLoadEntry: function() {
 		this.state.loading = true;
 		this.trigger(this.state);
 	},
-	onLoadPreviewByIdSuccess: function(data) {
+	onLoadEntrySuccess: function(data) {
 		this.state.loading = false;
 		this.state.error = null;
 		this.state.detail = data[0];
