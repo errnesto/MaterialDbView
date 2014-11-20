@@ -1,7 +1,7 @@
 {
 	"urls": {
 		"types": "/types",
-		"manufacturers": "/manufacturers",
+		"manufacturers": "http://localhost:8000/api/manufacturers",
 		"models": "/models"
 	}
 }

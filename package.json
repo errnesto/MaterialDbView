@@ -46,5 +46,9 @@
     "jquery": "^2.1.1",
     "microplugin": "0.0.3",
     "sifter": "^0.3.4"
+  },
+  "dependencies": {
+    "reflux": "^0.1.15",
+    "reqwest": "^1.1.5"
   }
 }
