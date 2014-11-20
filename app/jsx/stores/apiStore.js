@@ -1,6 +1,6 @@
 var Reflux = require('reflux');
-var previewActions = require('../actions/apiAction');
-var PreviewStore = Reflux.createStore({
+var apiActions = require('../actions/apiAction');
+var ApiStore = Reflux.createStore({
 	init: function() {
 		this.state = {
 			previews: [],
@@ -8,11 +8,11 @@ var PreviewStore = Reflux.createStore({
 			loading: false,
 			error: null
 		};
-		this.listenTo(previewActions.load, this.onLoadPreviews);
-		this.listenTo(previewActions.success, this.onLoadPreviewsSuccess);
-		this.listenTo(previewActions.error, this.onLoadPreviewsError);
-		this.listenTo(previewActions.loadById, this.onLoadPreviewById);
-		this.listenTo(previewActions.successLoadById, this.onLoadPreviewByIdSuccess);
+		this.listenTo(apiActions.load, this.onLoadPreviews);
+		this.listenTo(apiActions.success, this.onLoadPreviewsSuccess);
+		this.listenTo(apiActions.error, this.onLoadPreviewsError);
+		this.listenTo(apiActions.loadById, this.onLoadPreviewById);
+		this.listenTo(apiActions.successLoadById, this.onLoadPreviewByIdSuccess);
 	},
 	/*******************
 	preview list
@@ -46,4 +46,4 @@ var PreviewStore = Reflux.createStore({
 		this.trigger(this.state);
 	}
 });
-module.exports = PreviewStore;
+module.exports = ApiStore;

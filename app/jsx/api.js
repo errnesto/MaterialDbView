@@ -1,6 +1,6 @@
 var reqwest = require('reqwest');
 var config = require('../config');
-var PreviewApi = {
+var Api = {
 	load: function() {
 		return reqwest({
 			url: config.urls.manufacturers,
@@ -16,4 +16,4 @@ var PreviewApi = {
 		});
 	}
 }
-module.exports = PreviewApi;
+module.exports = Api;
