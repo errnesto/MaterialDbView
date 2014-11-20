@@ -5,7 +5,7 @@ var React = require("react");
 var Selectize = require("./selectize.jsx");
 
 var ApiStore = require('../stores/apiStore');
-var Api = require('../actions/apiAction');
+var Api = require('../actions/apiActions');
 
 var Select = React.createClass({
   componentWillMount: function() {
