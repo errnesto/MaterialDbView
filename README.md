@@ -25,3 +25,5 @@ Then visit [http://localhost:3000](http://localhost:3000)
   - colors
   - one dot = mg
 - site header
+- text other projects
+- text upload data or show all documents
