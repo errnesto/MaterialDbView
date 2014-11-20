@@ -1,5 +1,5 @@
 var Reflux = require('reflux');
-var apiActions = require('../actions/apiAction');
+var apiActions = require('../actions/apiActions');
 var ApiStore = Reflux.createStore({
 	init: function() {
 		this.state = {
