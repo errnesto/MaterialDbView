@@ -11,10 +11,11 @@ var PartGraph = React.createClass({
   buildMatrialRepresentation: function () {
     var materialList = [];
 
-    var numberOfDots = this.props.numberOfDots;
-    var partWeight   = this.props.part.mg;
-    var materials    = this.props.part.materials;
-    var dotsUsed     = 0;
+    var numberOfDots   = this.props.numberOfDots;
+    var partWeight     = this.props.part.mg;
+    var materials      = this.props.part.materials;
+    var dotsUsed       = 0;
+    var knownMatWeight = 0;
 
     if (materials) {
       materials.forEach(function (material) {
@@ -23,9 +24,11 @@ var PartGraph = React.createClass({
         dotsUsed += dots;
 
         var graphRepresentation = {
-          type:    type,
-          name:    material.name,
-          ammount: dots
+          type:        type,
+          name:        material.name,
+          ammount:     dots,
+          description: material.description,
+          mg:          material.mg
         };
 
         materialList.push(graphRepresentation);
@@ -63,9 +66,10 @@ var PartGraph = React.createClass({
             onClick   = {this.handleClick.bind(null, dotKey)} >
 
             {isSelected ? <Tooltip 
-                            data          = {material}
-                            componentName = {this.props.component.name}
-                            partName      = {this.props.part.name}/> : ''}
+                            data         = {material}
+                            component    = {this.props.component}
+                            part         = {this.props.part}
+                            deviceWieght = {this.props.deviceWeight}/> : ''}
           </li>
         );
       }

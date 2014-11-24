@@ -44,7 +44,6 @@
       bottom           15px
       left             4px
       width            200px
-      height           70px
       background-color inherit
       padding          10px
       z-index          10
@@ -66,7 +65,16 @@
       
       .dot-name
         font-size  14px
-        margin     3px 0
+        margin     3px 0 5px
+      
+      .description
+        margin-top 5px
+        
+      p 
+        margin 0
+        
+      a
+        color #fff
         
   .legend
     clear      both
@@ -113,12 +121,13 @@
       border-radius 10px
       
   .dot-weight
+    color #fff
     &:before
-      content     '='
+      content     '=>'
       text-indent 15px
       display     inline-block
       width       10px
       height      10px
       margin      0 25px 0 15px
-      background-color #222
+      background-color #fff
     

@@ -91,6 +91,7 @@ var DeviceGraph = React.createClass({
           key                     = {compRep.component.name}
           component               = {compRep.component}
           numberOfDots            = {compRep.numberOfDots}
+          deviceWeight            = {this.props.device.mg}
           selectedDot             = {this.state.selectedDot}
           selectDot               = {this.selectDot}             
           buildPartRepresentation = {this.buildComponentRepresentation} />
