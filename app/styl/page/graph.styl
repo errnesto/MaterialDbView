@@ -1,4 +1,7 @@
 .graph
+  .device
+    margin-top 20px
+    
   .material-list
     margin     0
     padding    0
@@ -22,19 +25,19 @@
         border-radius    0
         materialColor(#222)
       &.gold
-        materialColor(#F5A623)
+        materialColor(m-gold)
       &.tin
-        materialColor(#50E3C2)
+        materialColor(m-tin)
       &.silver
-        materialColor(#B9D5CB)
+        materialColor(m-silver)
       &.glass
-        materialColor(#00C9FF)
+        materialColor(m-glass)
       &.lithium
-        materialColor(#EDF414)
+        materialColor(m-lithium)
       &.acid
-        materialColor(#F70699)
+        materialColor(m-acid)
       &.plastic
-        materialColor(#029E00)
+        materialColor(m-plastic)
         
     .tooltip
       position         absolute
@@ -65,3 +68,57 @@
         font-size  14px
         margin     3px 0
         
+  .legend
+    clear      both
+    padding    20px 0 0 0
+    list-style none
+  
+  .legend-item
+    float left
+    &.gold
+      color            m-gold
+      &:before
+        background-color m-gold
+    &.tin
+      color            m-tin
+      &:before
+        background-color m-tin
+    &.silver
+      color            m-silver
+      &:before
+        background-color m-silver
+    &.glass
+      color            m-glass
+      &:before
+        background-color m-glass
+    &.lithium
+      color            m-lithium
+      &:before
+        background-color m-lithium
+    &.acid
+      color            m-acid
+      &:before
+        background-color m-acid
+    &.plastic
+      color            m-plastic
+      &:before
+        background-color m-plastic
+      
+    &:before
+      content ' '
+      display inline-block
+      width   10px
+      height  10px
+      margin  0 5px 0 15px
+      border-radius 10px
+      
+  .dot-weight
+    &:before
+      content     '='
+      text-indent 15px
+      display     inline-block
+      width       10px
+      height      10px
+      margin      0 25px 0 15px
+      background-color #222
+    

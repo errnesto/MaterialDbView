@@ -1,15 +1,12 @@
 "use strict";
 
 var React    = require('react');
-
-var Tooltip = require('./tooltip.jsx');
+var helpers  = require('../helpers.jsx');
+var Tooltip  = require('./tooltip.jsx');
 
 
 var PartGraph = React.createClass({
-  makeCssString: function (string) {
-    var escaped = string.replace(/\W/g,'-');   
-    return escaped.toLowerCase();
-  },
+  mixins: [helpers],
 
   buildMatrialRepresentation: function () {
     var materialList = [];
