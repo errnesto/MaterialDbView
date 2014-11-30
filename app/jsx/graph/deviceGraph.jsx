@@ -1,40 +1,12 @@
 "use strict";
 
-var React      = require('react');
-var helpers    = require('../helpers.jsx');
+var React         = require('react');
+var graph_helpers = require('./graph_helpers.jsx');
 
 var ComponentGraph = require('./componentGraph.jsx');
-var Legend         = require('./legend.jsx');
 
 var DeviceGraph = React.createClass({
-  mixins: [helpers],
-
-  buildComponentRepresentation: function (numberOfDots, deviceWeight, components) {
-    var componentList = [];
-    var dotsUsed      = 0;
-
-    if (components) {
-      components.forEach(function (component) {
-        var dots  = Math.ceil(numberOfDots * component.mg / deviceWeight);
-        dotsUsed += dots;
-
-        componentList.push({
-          component:    component,
-          numberOfDots: dots
-        });
-      });
-    }
-
-    // add unkown components
-    componentList.push({
-      component: {
-        name: 'unkown'
-      },
-      numberOfDots: numberOfDots - dotsUsed
-    });
-
-    return componentList;
-  },
+  mixins: [graph_helpers],
  
   render: function() {  
     var componentList = this.buildComponentRepresentation(4000, this.props.device.mg, this.props.device.components);
@@ -46,23 +18,15 @@ var DeviceGraph = React.createClass({
           component               = {compRep.component}
           numberOfDots            = {compRep.numberOfDots}
           deviceWeight            = {this.props.device.mg}
-          selectedDot             = {this.props.guiState.selectedDot}
-          selectDot               = {this.selectDot}             
-          buildPartRepresentation = {this.buildComponentRepresentation} />
+          guiState                = {this.props.guiState} />
       );
     }.bind(this));
 
     return (
-      <div 
-        className = "graph">
-        <div
-          className = "device">
-          {componetGraphList}
-        </div>
-
-        <Legend
-          device = {this.props.device} />
-      </div>
+      <div
+        className = "device">
+        {componetGraphList}
+      </div>  
     );
   }
 });

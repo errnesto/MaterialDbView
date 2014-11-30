@@ -58,7 +58,7 @@ var PartGraph = React.createClass({
     materialList.forEach(function (material, index) {
       for (var i = 0; i < material.ammount; i++) {
         var dotKey = this.props.component.name + this.props.part.name + material.type + index + i;
-        var isSelected = (this.props.selectedDot == dotKey);
+        var isSelected = (this.props.guiState.selectedDot == dotKey);
 
         dotList.push(
           <li 

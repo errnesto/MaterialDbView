@@ -7,9 +7,13 @@ var data       = require('../device_data.json');
 var guiStore   = require('./stores/guiStore');
 var guiActions = require('./actions/guiActions');
 
-var Header      = require('./header.jsx');
-var DeviceGraph = require('./graph/deviceGraph.jsx');
-var Select      = require('./select/select.jsx');
+var Header         = require('./header.jsx');
+var Select         = require('./select/select.jsx');
+var DeviceGraph    = require('./graph/deviceGraph.jsx');
+var ComponentGraph = require('./graph/componentGraph.jsx');
+var PartGraph      = require('./graph/partGraph.jsx');
+var Legend         = require('./graph/legend.jsx');
+
 
 
 var Page = React.createClass({
@@ -38,7 +42,48 @@ var Page = React.createClass({
     console.log('Select value changed: ', value);
   },
 
-  render: function() {
+  chooseGraph: function (graphType) {
+    var graph;
+    switch (graphType) {
+      case 'device':
+        graph = (
+          <DeviceGraph 
+            deviceName = {data.device_name} 
+            device     = {data}
+            guiState   = {this.state.guiState}
+          />
+        );
+      break;
+
+      case 'component':
+        graph = (
+          <ComponentGraph
+            component    = {data.components[0]}
+            numberOfDots = {4000}
+            deviceWeight = {data.mg}
+            guiState     = {this.state.guiState}
+          />
+        );
+      break;
+
+      case 'part':
+        graph = (
+          <PartGraph
+            part         = {data.components[0].parts[0]}
+            component    = {data.components[0]}
+            numberOfDots = {4000}
+            deviceWeight = {data.mg}
+            guiState     = {this.state.guiState}
+          />
+        );
+      break;
+    }
+    return graph
+  },
+
+  render: function() { 
+    var graph = this.chooseGraph('part');
+
     return (
       <div 
         className = "view">
@@ -89,11 +134,14 @@ var Page = React.createClass({
           ref         = "manufacturerSelector"
         />
 
-        <DeviceGraph 
-          deviceName = {data.device_name} 
-          device     = {data}
-          guiState   = {this.state.guiState}
-        />
+        {/* the graph */}
+        <div
+          className = "graph">
+          {graph}
+          <Legend
+            device = {data} />
+        </div>
+
 
         <div
           className = "actions">
