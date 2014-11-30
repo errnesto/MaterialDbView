@@ -7,11 +7,11 @@ var ApiStore = Reflux.createStore({
 			data:      null
 		};
 
-		this.listenTo(apiActions.deviceLoaded, this.onDeviceLoaded);
+		this.listenTo(apiActions.loadSuccess, this.onLoadSuccess);
 	},
 	
-	onDeviceLoaded: function(data) {
-		this.state.graphType = 'device';
+	onLoadSuccess: function(graphType, data) {
+		this.state.graphType = graphType;
 		this.state.data      = data;
 		this.trigger(this.state);
 	}

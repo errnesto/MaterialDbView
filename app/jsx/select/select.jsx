@@ -13,6 +13,12 @@ var Select = React.createClass({
       case 'device':
       Api.loadDevice();
       break;
+      case 'component':
+      Api.loadComponent();
+      break;
+      case 'part':
+      Api.loadPart();
+      break;
     }
   },
   getInitialState: function() {

@@ -57,15 +57,16 @@ var PartGraph = React.createClass({
     var dotList = [];
     materialList.forEach(function (material, index) {
       for (var i = 0; i < material.ammount; i++) {
-        var dotKey = this.props.component.name + this.props.part.name + material.type + index + i;
-        var isSelected = (this.props.guiState.selectedDot == dotKey);
+        var componentName = this.props.component ? this.props.component.name : '';
+        var dotKey        = componentName + this.props.part.name + material.type + index + i;
+        var isSelected    = (this.props.guiState.selectedDot == dotKey);
 
         dotList.push(
           <li 
             className = {'dot ' + material.type}
             key       = {dotKey}
             onClick   = {this.handleClick.bind(null, dotKey)} >
-            {material.type == 'unkown' ? 'x' : ''}
+            {material.type == 'unkown' ? '?' : ''}
             {isSelected ? <Tooltip 
                             data         = {material}
                             component    = {this.props.component}

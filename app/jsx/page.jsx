@@ -58,9 +58,8 @@ var Page = React.createClass({
       case 'component':
         graph = (
           <ComponentGraph
-            component    = {this.state.apiState.data.components[0]}
+            component    = {this.state.apiState.data}
             numberOfDots = {4000}
-            deviceWeight = {this.state.apiState.data.mg}
             guiState     = {this.state.guiState}
           />
         );
@@ -69,10 +68,8 @@ var Page = React.createClass({
       case 'part':
         graph = (
           <PartGraph
-            part         = {this.state.apiState.data.components[0].parts[0]}
-            component    = {this.state.apiState.data.components[0]}
+            part         = {this.state.apiState.data}
             numberOfDots = {4000}
-            deviceWeight = {this.state.apiState.data.mg}
             guiState     = {this.state.guiState}
           />
         );
@@ -118,12 +115,12 @@ var Page = React.createClass({
         <Select
           name        = "component"
           placeholder = "Component"
-          options     = {[{id: 0, name: 'Acer'}]}
+          options     = {[{id: 0, name: 'Example'}]}
         />
         <Select
           name        = "part"
           placeholder = "Part"
-          options     = {[{id: 0, name: 'Acer'}]}
+          options     = {[{id: 0, name: 'Example'}]}
         />
 
         {/* the graph */}
