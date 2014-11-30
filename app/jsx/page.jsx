@@ -115,12 +115,12 @@ var Page = React.createClass({
         <Select
           name        = "component"
           placeholder = "Component"
-          options     = {[{id: 0, name: 'Example'}]}
+          options     = {[{id: 0, name: 'Hard Disk'}]}
         />
         <Select
           name        = "part"
           placeholder = "Part"
-          options     = {[{id: 0, name: 'Example'}]}
+          options     = {[{id: 0, name: 'Disk'}]}
         />
 
         {/* the graph */}
