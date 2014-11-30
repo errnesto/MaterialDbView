@@ -4,17 +4,16 @@ var React = require("react");
 
 var Selectize = require("./selectize.jsx");
 
-var ApiStore = require('../stores/apiStore');
 var Api = require('../actions/apiActions');
 
 var Select = React.createClass({
-  componentWillMount: function() {
-    // replace with AJAX !!!
-    this.options = [{id: "1", name: "Acer"}, {id: "2", name: "Asus"}, {id: "3", name: "Apple"}];
-  },
-  componentDidMount: function() {
-    // this.unsubscribe = ApiStore.listen(this.onStatusChange);
-    // Api.load();
+
+  handleChange: function () {
+    switch (this.props.name) {
+      case 'device':
+      Api.loadDevice();
+      break;
+    }
   },
   getInitialState: function() {
     return {value: ""};
@@ -26,10 +25,10 @@ var Select = React.createClass({
         placeholder      = {this.props.placeholder}
         type             = "text"
         value            = {this.state.value}
-        onChange         = {this.props.onChange}
+        onChange         = {this.handleChange}
         displayAttribute = "name"
         valueAttribute   = "id"
-        options          = {this.options}
+        options          = {this.props.options}
       />
     );
   }

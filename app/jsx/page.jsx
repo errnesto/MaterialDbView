@@ -3,8 +3,8 @@
 var React = require('react');
 
 var config     = require('../config.json');
-var data       = require('../device_data.json');
 var guiStore   = require('./stores/guiStore');
+var apiStore   = require('./stores/apiStore');
 var guiActions = require('./actions/guiActions');
 
 var Header         = require('./header.jsx');
@@ -19,27 +19,27 @@ var Legend         = require('./graph/legend.jsx');
 var Page = React.createClass({
   getInitialState: function () {
     return {
-      guiState: {}
+      guiState: {},
+      apiState: {}
     }
   },
 
   componentDidMount: function() {
-    this.unsubscribe = guiStore.listen(this.updateGui);
+    this.unsubscribeGuiStore = guiStore.listen(this.updateGui);
+    this.unsubscribeApiStore = apiStore.listen(this.updateApi);
+
     window.addEventListener('click', guiActions.click);
   },
 
   componentWillUnmount: function() {
-    this.unsubscribe();
+    this.unsubscribeGuiStore();
   },
 
   updateGui: function (guiState) {
-    this.setState({
-      guiState: guiState
-    });
+    this.setState({ guiState: guiState });
   },
-
-  changed: function(value) {
-    console.log('Select value changed: ', value);
+  updateApi: function (apiState) {
+    this.setState({ apiState: apiState });
   },
 
   chooseGraph: function (graphType) {
@@ -48,8 +48,8 @@ var Page = React.createClass({
       case 'device':
         graph = (
           <DeviceGraph 
-            deviceName = {data.device_name} 
-            device     = {data}
+            deviceName = {this.state.apiState.data.device_name} 
+            device     = {this.state.apiState.data}
             guiState   = {this.state.guiState}
           />
         );
@@ -58,9 +58,9 @@ var Page = React.createClass({
       case 'component':
         graph = (
           <ComponentGraph
-            component    = {data.components[0]}
+            component    = {this.state.apiState.data.components[0]}
             numberOfDots = {4000}
-            deviceWeight = {data.mg}
+            deviceWeight = {this.state.apiState.data.mg}
             guiState     = {this.state.guiState}
           />
         );
@@ -69,10 +69,10 @@ var Page = React.createClass({
       case 'part':
         graph = (
           <PartGraph
-            part         = {data.components[0].parts[0]}
-            component    = {data.components[0]}
+            part         = {this.state.apiState.data.components[0].parts[0]}
+            component    = {this.state.apiState.data.components[0]}
             numberOfDots = {4000}
-            deviceWeight = {data.mg}
+            deviceWeight = {this.state.apiState.data.mg}
             guiState     = {this.state.guiState}
           />
         );
@@ -82,7 +82,7 @@ var Page = React.createClass({
   },
 
   render: function() { 
-    var graph = this.chooseGraph('part');
+    var graph = this.chooseGraph(this.state.apiState.graphType);
 
     return (
       <div 
@@ -98,48 +98,40 @@ var Page = React.createClass({
         <Select
           name        = "device-type"
           placeholder = "Type"
-          onChange    = {this.changed}
-          url         = {config.urls.types}
-          ref         = "deviceSelector" 
+          ref         = "deviceSelector"
+          options     = {[{id: 0, name: 'Computer'}]}
         />
 
         <Select
           name        = "manufacturer"
           placeholder = "Manufacturer's name"
-          onChange    = {this.changed}
-          url         = {config.urls.manufacturers}
           ref         = "manufacturerSelector"
+          options     = {[{id: 0, name: 'Acer'}]}
         />
 
         <h2>Select:</h2>
         <Select
-          name        = "manufacturer"
+          name        = "device"
           placeholder = "Device"
-          onChange    = {this.changed}
-          url         = {config.urls.manufacturers}
-          ref         = "manufacturerSelector"
+          options     = {[{id: 0, name: 'One'}]}
         />
         <Select
-          name        = "manufacturer"
+          name        = "component"
           placeholder = "Component"
-          onChange    = {this.changed}
-          url         = {config.urls.manufacturers}
-          ref         = "manufacturerSelector"
+          options     = {[{id: 0, name: 'Acer'}]}
         />
         <Select
-          name        = "manufacturer"
+          name        = "part"
           placeholder = "Part"
-          onChange    = {this.changed}
-          url         = {config.urls.manufacturers}
-          ref         = "manufacturerSelector"
+          options     = {[{id: 0, name: 'Acer'}]}
         />
 
         {/* the graph */}
         <div
           className = "graph">
           {graph}
-          <Legend
-            device = {data} />
+          {/*<Legend
+            device = {this.state.apiState.data} />*/}
         </div>
 
 

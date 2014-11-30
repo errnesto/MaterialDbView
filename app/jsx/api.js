@@ -1,12 +1,10 @@
 var reqwest = require('reqwest');
-var config = require('../config');
+var data    = require('../device_data.json');
+var config  = require('../config');
+
 var Api = {
-	load: function() {
-		return reqwest({
-			url: config.urls.manufacturers,
-			type: 'json',
-			crossOrigin: true
-		});
+	loadDevices: function(filter) {
+		return data
 	},
 	
 	loadById: function(id) {
