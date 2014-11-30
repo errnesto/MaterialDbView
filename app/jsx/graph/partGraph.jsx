@@ -64,7 +64,7 @@ var PartGraph = React.createClass({
             className = {'dot ' + material.type}
             key       = {dotKey}
             onClick   = {this.handleClick.bind(null, dotKey)} >
-
+            {material.type == 'unkown' ? 'x' : ''}
             {isSelected ? <Tooltip 
                             data         = {material}
                             component    = {this.props.component}

@@ -69,7 +69,8 @@ var Page = React.createClass({
           <p>Also you can look at documents uploaded by others and insert the data from these documents into the database.</p>
           <a 
             className = "add-information"
-            href      = "">
+            href      = "http://localhost:1337/docs"
+            target    = "blank">
             Add new data
           </a>
           <a 

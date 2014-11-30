@@ -1,0 +1,66 @@
+.legend
+  clear      both
+  padding    20px 0 0 0
+  list-style none
+
+.legend-item
+  float left
+  &.gold
+    color m-gold
+    &:before
+      background-color m-gold
+  &.tin
+    color m-tin
+    &:before
+      background-color m-tin
+  &.silver
+    color m-silver
+    &:before
+      background-color m-silver
+  &.glass
+    color m-glass
+    &:before
+      background-color m-glass
+  &.lithium
+    color m-lithium
+    &:before
+      background-color m-lithium
+  &.acid
+    color m-acid
+    &:before
+      background-color m-acid
+  &.plastic
+    color m-plastic
+    &:before
+      background-color m-plastic
+    
+  &:before
+    content ' '
+    display inline-block
+    width   10px
+    height  10px
+    margin  0 5px 0 15px
+    border-radius 10px
+
+  &.unkown
+    color #727272
+    &:before
+      vertical-align   middle
+      font-size        9px
+      text-align       center
+      content          'x'
+      margin-left      0
+      border-radius    0
+      background-color m-unkown
+
+.dot-weight
+  color #fff
+  &:before
+    content     '⩯'
+    text-indent 15px
+    display     inline-block
+    width       10px
+    height      10px
+    margin      0 20px 0 15px
+    background-color #fff
+    
