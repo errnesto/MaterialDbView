@@ -127,8 +127,8 @@ var Page = React.createClass({
         <div
           className = "graph">
           {graph}
-          {/*<Legend
-            device = {this.state.apiState.data} />*/}
+          <Legend
+            device = {this.state.apiState.data} />
         </div>
 
 

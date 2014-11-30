@@ -8,27 +8,22 @@ var ComponentGraph = require('./componentGraph.jsx');
 var DeviceGraph = React.createClass({
   mixins: [helpers],
 
-  getDefaultProps: function () {
-    return {
-      materials: {}
-    }
-  },
+  materials: {},
 
-  componentWillMount: function () {
-    this.findMaterials(this.props.device.components);
+  componentWillReceiveProps: function (nextProps) {
+    this.materials = {};
+    this.findMaterials(nextProps.device);
   },
 
   findMaterials: function (obj) {
-    var materials = {};
-
     for (var key in obj) {
       if (obj.hasOwnProperty(key) && typeof obj[key] == 'object') {
         this.findMaterials(obj[key]);
         if(key == 'materials') {
           obj[key].forEach(function (material) {
-            if (!this.props.materials[material.name])
-              this.props.materials[material.name] = 0;
-            this.props.materials[material.name] += +material.mg;
+            if (!this.materials[material.name])
+              this.materials[material.name] = 0;
+            this.materials[material.name] += +material.mg;
           }.bind(this));
         }
       }
@@ -37,7 +32,7 @@ var DeviceGraph = React.createClass({
  
   render: function() {  
     var legend    = [];
-    for (var material in this.props.materials) {
+    for (var material in this.materials) {
       legend.push(
         <li
           className = {'legend-item ' + this.makeCssString(material)}
@@ -45,26 +40,30 @@ var DeviceGraph = React.createClass({
           {material} &nbsp;
           <span
             className = "mg">
-            {this.props.materials[material]}mg
+            {this.materials[material]}mg
           </span>
         </li>
       );
     }
 
-    return (
-      <ul
-        className = "legend">
-        <li 
-          className = "unkown legend-item">
-          missing Data
-        </li>
-        {legend}
-        <li 
-          className = "dot-weight">
-          {this.props.device.mg/4000}mg / deviceWeight: {this.props.device.mg}mg
-        </li>
-      </ul>
-    );
+    if(this.props.device) {
+      return (
+        <ul
+          className = "legend">
+          <li 
+            className = "unkown legend-item">
+            missing Data
+          </li>
+          {legend}
+          <li 
+            className = "dot-weight">
+            {this.props.device.mg/4000}mg / deviceWeight: {this.props.device.mg}mg
+          </li>
+        </ul>
+      );
+    } else {
+      return null;
+    }
   }
 });
 
