@@ -1,12 +1,18 @@
 "use strict";
 
-var React    = require('react');
-var helpers  = require('../helpers.jsx');
-var Tooltip  = require('./tooltip.jsx');
+var React      = require('react');
+var helpers    = require('../helpers.jsx');
+var guiActions = require('../actions/guiActions');
+var Tooltip    = require('./tooltip.jsx');
 
 
 var PartGraph = React.createClass({
   mixins: [helpers],
+
+  handleClick: function (dotKey, e) {
+    e.stopPropagation();
+    guiActions.clickOnDot(dotKey);
+  },
 
   buildMatrialRepresentation: function () {
     var materialList = [];
@@ -43,11 +49,6 @@ var PartGraph = React.createClass({
     });
 
     return materialList;
-  },
-
-  handleClick: function (dotKey, e) {
-    e.stopPropagation();
-    this.props.selectDot(dotKey)
   },
 
   render: function() {

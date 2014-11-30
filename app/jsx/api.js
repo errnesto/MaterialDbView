@@ -8,6 +8,7 @@ var Api = {
 			crossOrigin: true
 		});
 	},
+	
 	loadById: function(id) {
 		return reqwest({
 			url: config.urls.manufacturers + '/' + id,

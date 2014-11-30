@@ -13,8 +13,8 @@ var Select = React.createClass({
     this.options = [{id: "1", name: "Acer"}, {id: "2", name: "Asus"}, {id: "3", name: "Apple"}];
   },
   componentDidMount: function() {
-    this.unsubscribe = ApiStore.listen(this.onStatusChange);
-    Api.load();
+    // this.unsubscribe = ApiStore.listen(this.onStatusChange);
+    // Api.load();
   },
   getInitialState: function() {
     return {value: ""};

@@ -8,7 +8,7 @@ var Header = React.createClass({
     return (
       <div 
         className = "header">
-        <span className = "circle"/><span className = "square"/>MaterialDbView
+        <span className = "circle"/><span className = "square"/><h1 className = "title">MaterialDbView</h1>
       </div>
     );
   }

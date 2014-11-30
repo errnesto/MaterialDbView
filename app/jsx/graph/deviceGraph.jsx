@@ -1,33 +1,13 @@
 "use strict";
 
-var React   = require('react');
-var helpers = require('../helpers.jsx');
+var React      = require('react');
+var helpers    = require('../helpers.jsx');
 
 var ComponentGraph = require('./componentGraph.jsx');
 var Legend         = require('./legend.jsx');
 
 var DeviceGraph = React.createClass({
   mixins: [helpers],
-
-  getInitialState: function () {
-    return {
-      selectedDot: null
-    }
-  },
-
-  componentDidMount: function () {
-    window.addEventListener('click', this.handleClick);
-  },
-
-  handleClick: function (e) {
-    this.selectDot('');
-  },
-
-  selectDot: function (group) {
-    this.setState({
-      selectedDot: group
-    });
-  },
 
   buildComponentRepresentation: function (numberOfDots, deviceWeight, components) {
     var componentList = [];
@@ -66,7 +46,7 @@ var DeviceGraph = React.createClass({
           component               = {compRep.component}
           numberOfDots            = {compRep.numberOfDots}
           deviceWeight            = {this.props.device.mg}
-          selectedDot             = {this.state.selectedDot}
+          selectedDot             = {this.props.guiState.selectedDot}
           selectDot               = {this.selectDot}             
           buildPartRepresentation = {this.buildComponentRepresentation} />
       );

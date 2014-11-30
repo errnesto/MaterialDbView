@@ -2,23 +2,54 @@
 
 var React = require('react');
 
+var config     = require('../config.json');
+var data       = require('../device_data.json');
+var guiStore   = require('./stores/guiStore');
+var guiActions = require('./actions/guiActions');
+
 var Header      = require('./header.jsx');
 var DeviceGraph = require('./graph/deviceGraph.jsx');
 var Select      = require('./select/select.jsx');
-var config      = require('../config.json');
-var data        = require('../device_data.json');
 
 
 var Page = React.createClass({
+  getInitialState: function () {
+    return {
+      guiState: {}
+    }
+  },
+
+  componentDidMount: function() {
+    this.unsubscribe = guiStore.listen(this.updateGui);
+    window.addEventListener('click', guiActions.click);
+  },
+
+  componentWillUnmount: function() {
+    this.unsubscribe();
+  },
+
+  updateGui: function (guiState) {
+    this.setState({
+      guiState: guiState
+    });
+  },
+
   changed: function(value) {
     console.log('Select value changed: ', value);
   },
+
   render: function() {
     return (
       <div 
         className = "view">
         <Header />
-        <p>Filter:</p>
+        <p>
+          This database is to collect information about the materials in electronical devices.<br />
+          Here you can get a quick look at the data already in the database
+          or easily add new data.<br />
+          You can access the full database with our <a href="http://localhost:1337/docs">api</a>
+        </p>
+        <h2>Filter:</h2>
         <Select
           name        = "device-type"
           placeholder = "Type"
@@ -35,7 +66,7 @@ var Page = React.createClass({
           ref         = "manufacturerSelector"
         />
 
-        <p>Select:</p>
+        <h2>Select:</h2>
         <Select
           name        = "manufacturer"
           placeholder = "Device"
@@ -61,6 +92,7 @@ var Page = React.createClass({
         <DeviceGraph 
           deviceName = {data.device_name} 
           device     = {data}
+          guiState   = {this.state.guiState}
         />
 
         <div
