@@ -1,3 +1,6 @@
+var SERVER_CONNECTION = 'web@128.199.41.118';
+var SERVER_DEST = '~/project';
+
 // Load Gulp and your plugins
 var gulp         = require('gulp');
 var plumber      = require('gulp-plumber');
@@ -8,11 +11,20 @@ var stylus       = require('gulp-stylus');
 var autoprefixer = require('autoprefixer-stylus');
 var browserify   = require('browserify');
 var source       = require('vinyl-source-stream');
+var rsync        = require('gulp-rsync');
 
 var paths = {
 	styles: 'app/styl/**/*.styl',
 	react:  'app/jsx/**/*'
 };
+
+gulp.task('deploy', function() {
+  gulp.src(['assets/**', './index.html'])
+    .pipe(rsync({
+      hostname: SERVER_CONNECTION,
+      destination: SERVER_DEST
+    }));
+});
 
 //start development server
 gulp.task('server', function () {
