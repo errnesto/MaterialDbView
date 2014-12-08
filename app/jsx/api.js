@@ -1,6 +1,6 @@
 var reqwest = require('reqwest');
-var data    = require('../device_data.json');
-var config  = require('../config');
+var data    = require('json!../device_data.json');
+var config  = require('json!../config.json');
 
 var Api = {
 	loadDevices: function(filter) {

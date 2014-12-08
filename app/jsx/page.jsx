@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var config     = require('../config.json');
+var config     = require('json!../config.json');
 var guiStore   = require('./stores/guiStore');
 var apiStore   = require('./stores/apiStore');
 var guiActions = require('./actions/guiActions');
